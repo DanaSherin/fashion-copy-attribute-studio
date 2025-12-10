@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual envs
+venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/processed/*
+data/annotated/*
+data/raw/*
+
+# Model outputs
+models/*
+!models/README.md
+
+# VSCode
+.vscode/
+
+# Colab
+*.ipynb_checkpoints
