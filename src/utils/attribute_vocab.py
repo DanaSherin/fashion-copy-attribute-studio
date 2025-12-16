@@ -1,11 +1,16 @@
 """
-Fashion attribute vocabularies and NER label schema.
+Reference vocabularies and normalization helpers for fashion attributes.
 
-This file defines:
-- Canonical vocabularies for each attribute (colors, materials, etc.)
-- Simple synonym maps for normalization
-- The list of NER labels used for sequence tagging
+This file provides:
+- Canonical vocabularies (colors, materials, patterns, etc.)
+- Synonym maps for normalization and post-processing
+
+NOTE:
+This file does NOT define the active NER label schema.
+The NER schema is intentionally limited and defined separately
+according to Phase 3 (Schema & Annotation Strategy).
 """
+
 
 # -----------------------------
 # Canonical vocabularies
@@ -313,33 +318,3 @@ SYNONYM_MAPS = {
     "neckline": NECKLINE_SYNONYMS,
     "occasion": OCCASION_SYNONYMS,
 }
-
-# -----------------------------
-# NER label schema
-# -----------------------------
-
-# Which attributes will appear as NER tags in the text
-ATTRIBUTES_FOR_NER = [
-    "GENDER",
-    "CATEGORY",
-    "COLOR",
-    "MATERIAL",
-    "PATTERN",
-    "FIT",
-    "LENGTH",
-    "NECKLINE",
-    "SLEEVE",
-    "OCCASION",
-    "STYLE",
-    "DETAIL",
-]
-
-# Build BIO labels automatically: B-ATTR, I-ATTR + "O"
-NER_LABELS = ["O"]
-for attr in ATTRIBUTES_FOR_NER:
-    NER_LABELS.append(f"B-{attr}")
-    NER_LABELS.append(f"I-{attr}")
-
-# Mapping helpers (for the model config)
-LABEL2ID = {label: i for i, label in enumerate(NER_LABELS)}
-ID2LABEL = {i: label for label, i in LABEL2ID.items()}
