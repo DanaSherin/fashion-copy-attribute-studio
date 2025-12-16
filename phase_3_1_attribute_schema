@@ -1,0 +1,93 @@
+# Phase 3.1 — Attribute Schema Definition
+
+## Objective
+Define a phrase-level attribute schema for extracting structured fashion attributes
+from short product descriptions using Named Entity Recognition (NER).
+
+## Design Principles
+- Schema grounded in datasetataset analysis (Phase 2)
+- Phrase-level entities
+- Minimal but expressive
+- Suitable for sequence labeling and chatbot use
+
+## Entity Set
+
+### 1. PRODUCT_TYPE
+**Description:** Core product category.
+
+**Examples:**
+- dress
+- bag
+- sneakers
+- sunglasses
+- boots
+
+---
+
+### 2. PRODUCT_SUBTYPE
+**Description:** Structural or stylistic subtype.
+
+**Examples:**
+- shoulder bag
+- tote bag
+- crossbody bag
+- midi dress
+- ankle boots
+
+---
+
+### 3. PATTERN_DESIGN
+**Description:** Visual or surface design features.
+
+**Examples:**
+- floral print
+- logo print
+- leopard print
+- embroidered
+
+---
+
+### 4. FIT_LENGTH
+**Description:** Fit, cut, or length descriptors.
+
+**Examples:**
+- mini
+- midi
+- maxi
+- cropped
+- oversized
+- skinny
+
+---
+
+### 5. MATERIAL_FINISH
+**Description:** Material or construction finish.
+
+**Examples:**
+- leather
+- silk
+- velvet
+- denim
+- yellow gold
+
+---
+
+### 6. BRAND_TOKEN
+**Description:** Brand-related tokens appearing in text.
+
+**Examples:**
+- Gucci
+- Valentino Garavani
+- FendiMania
+- GG
+
+## Example Annotation
+
+**Input:**  
+`Gucci logo print tote bag`
+
+**Labels:**
+
+## Notes
+- Metadata columns (brand.name, gender, price) are not prediction targets
+- Schema is designed for BIO tagging
