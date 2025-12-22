@@ -52,7 +52,7 @@ Data Quality Checks
 
 Missing values: Expected in optional fields (e.g., sizes, discounts)
 
-Duplicate rows: ❌ None detected
+Duplicate rows: None detected
 
 Brand names: Clean and normalized
 
