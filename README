@@ -1,163 +1,36 @@
-Phase 2: Data Understanding & Exploratory Analysis
-Objective
-
-The goal of Phase 2 is to develop a deep understanding of the dataset structure, semantics, and linguistic patterns in order to inform downstream NLP modeling decisions for the Fashion Copy & Attribute Studio project.
-
-This phase focuses on:
-
-Understanding catalog metadata
-
-Identifying meaningful text fields
-
-Analyzing linguistic structure of fashion descriptions
-
-Justifying the choice of NLP techniques used in later phases
-
-Dataset Overview
-
-The project uses the Farfetch Listings Dataset, containing fashion product listings with both textual and structured metadata.
-
-Key characteristics:
-
-~188K fashion products
-
-Focus on women’s and unisex fashion
-
-Includes apparel, footwear, bags, accessories, and eyewear
-
-Rich short product descriptions suitable for NLP tasks
-
-Key Columns and Their Roles
-Core NLP Columns
-Column	Description	Usage
-shortDescription	Short product description (e.g., “floral midi dress”)	Primary NLP input
-brand.name	Brand identifier (e.g., Gucci, Prada)	Conditioning context
-gender	Catalog category (women / unisex)	Contextual metadata
-Supporting Metadata
-Column	Purpose
-priceInfo.finalPrice	Business context / demo filtering
-priceInfo.isOnSale	Promotional context
-stockTotal	Inventory signal
-Ignored for Modeling (but retained)
-
-Image URLs (images.*)
-
-Structured size data (availableSizes)
-
-Internal IDs (brand.id, merchantId)
-
-Index columns (Unnamed: 0)
-
-Data Quality Checks
-
-Missing values: Expected in optional fields (e.g., sizes, discounts)
-
-Duplicate rows: None detected
-
-Brand names: Clean and normalized
-
-Gender values: Limited to women and unisex by dataset scope
-
-The dataset is clean and suitable for NLP modeling without aggressive preprocessing.
-
-Brand Distribution Analysis
-
-Top brands by frequency include:
-
-Chanel (Pre-Owned)
-
-Prada
-
-Gucci
-
-Saint Laurent
-
-Dolce & Gabbana
-
-Fendi
-
-Valentino
-
-This reflects realistic luxury fashion catalog distributions and ensures brand diversity for modeling.
-
-Gender Distribution & Brand Interaction
-
-Women: ~94%
-
-Unisex: ~6%
-
-Key findings:
-
-Unisex items are primarily associated with accessories (bags, eyewear, sneakers)
-
-Apparel-focused luxury brands are overwhelmingly women-categorized
-
-Some brands are 100% unisex, reflecting intentional gender-neutral branding
-
-Conclusion:
-Gender categorization is product-type driven, not brand-driven.
-Gender is treated as contextual metadata, not a prediction target.
-
-Linguistic Analysis of Product Descriptions
-Unigram Analysis
-
-Most frequent tokens include:
-
-dress, bag, print, logo, trousers, skirt, top
-
-These tokens indicate product category and high-level attributes, but are insufficient alone.
-
-Bigram (Phrase-Level) Analysis
-
-Most frequent bigrams include:
-
-shoulder bag
-
-tote bag
-
-crossbody bag
-
-midi dress
-
-mini dress
-
-floral print
-
-logo print
-
-ankle boots
-
-Key insight:
-Fashion meaning is encoded in multi-word attribute phrases, not individual words.
-
-Implications for NLP Modeling
-
-Findings from Phase 2 directly inform modeling choices:
-
-Attribute information is phrase-based
-
-Sequence-level modeling is required
-
-Simple keyword matching is insufficient
-
-Therefore, downstream phases will use:
-
-Named Entity Recognition (NER) for attribute extraction
-
-Phrase-aware labeling (BIO format)
-
-Controlled text generation conditioned on extracted attributes
-
-Phase 2 Summary
-
-Phase 2 establishes that the dataset:
-
-Is clean, realistic, and industry-relevant
-
-Contains attribute-dense short descriptions
-
-Encodes fashion meaning through multi-token phrases
-
-Supports sequence labeling and controlled generation tasks
-
-This analysis provides a strong foundation for attribute schema design and NER modeling in Phase 3.
+# Fashion Attribute Studio
+
+Hybrid NLP system for extracting structured fashion attributes from short product descriptions and enabling controlled text generation.
+
+## Overview
+This project implements an explainable NLP pipeline that combines weak supervision, transformer-based NER, and rule-based post-processing to extract fashion attributes.
+
+## Pipeline
+1. Dataset understanding (Farfetch listings)
+2. Attribute schema design
+3. Weak supervision with BIO tagging
+4. NER model training (BERT)
+5. Hybrid rule–model post-processing
+6. Canonical structured output
+7. Controlled attribute-conditioned generation
+8. Interactive chatbot demo
+
+## Key Features
+- Explainable attribute extraction
+- No manual annotation
+- Hybrid robustness
+- Controlled generation
+- Streamlit UI with JSON export
+
+## Technologies
+- Python
+- HuggingFace Transformers
+- PyTorch
+- Streamlit
+- OpenAI API
+
+## Output
+The system produces structured, auditable JSON outputs suitable for search, analytics, and content generation.
+
+## Author
+Dana Sherin
